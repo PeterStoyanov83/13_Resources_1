@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "npm run test:unit && npm run test:ui",
     "test:unit": "mocha -u tdd 'tests/unit/*.js'",
     "test:ui": "npx playwright test",
     "start": "node index.js"
