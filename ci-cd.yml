@@ -28,14 +28,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm test
+      - name: Run unit tests
+        run: npm run test:unit
 
       - name: Run UI tests
-        run: npm run ui-test
+        run: npm run test:ui
 
       - name: Display SoftUni Username
-        run: echo "Your SoftUni username: {@peterstopyanov}"
+        run: echo "Your SoftUni username: {@peterstoyanov}"
 
   deploy:
     needs: build-and-test
