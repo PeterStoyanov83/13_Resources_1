@@ -35,7 +35,8 @@ jobs:
         run: npm run test:ui
 
       - name: Display SoftUni Username
-        run: echo "Your SoftUni username: @peterstoyanov"
+        run:echo "Your SoftUni username: @peterstoyanov"
+
 
   deploy:
     needs: build-and-test
