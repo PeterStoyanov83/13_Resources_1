@@ -4,14 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test:unit && npm run test:ui",
-    "test:unit": "mocha -u tdd 'tests/unit/*.js'",
+    "test:unit": "mocha 'tests/unit/**/*.js'",
     "test:ui": "npx playwright test",
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
     "express": "^4.18.2",
@@ -20,6 +16,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.30",
+    "chai": "^4.3.4",
     "mocha": "^10.2.0"
   }
 }

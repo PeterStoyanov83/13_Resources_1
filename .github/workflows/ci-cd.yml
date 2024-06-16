@@ -28,14 +28,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Start application
+        run: |
+          PORT=8080 npm start &
+          sleep 15 # Increase sleep duration to ensure the application starts
+
       - name: Run unit tests
         run: npm run test:unit
 
       - name: Run UI tests
         run: npm run test:ui
 
-#      - name: Display SoftUni Username
-#        run:echo "Your SoftUni username: @peterstoyanov"
 
 
   deploy:
