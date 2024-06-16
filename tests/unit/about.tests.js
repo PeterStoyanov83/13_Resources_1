@@ -1,18 +1,16 @@
-const { test, expect } = require('@playwright/test');
+const assert = require('assert');
+const fetch = require('node-fetch');
 
-test('Check about page', async ({ page }) => {
-  await page.goto('http://localhost:8080/about');
-  const heading = await page.$('h1');
-  expect(heading).not.toBeNull();
-  const text = await heading.textContent();
-  expect(text).toBe('About my shopping list');
+describe('About Page Unit Tests', function() {
+  it('Page title', async function() {
+    let res = await fetch("http://localhost:8080/about");
+    let body = await res.text();
+    assert.ok(body.includes("<h1>About my shopping list</h1>"));
+  });
+
+  it('About page content', async function() {
+    let res = await fetch("http://localhost:8080/about");
+    let body = await res.text();
+    assert.ok(body.includes("<p>This is my shopping list</p>"));
+  });
 });
-
-test('Check about page test', async ({ page }) => {
-  await page.goto('http://localhost:8080/about');
-  const paragraph = await page.$('p');
-  expect(paragraph).not.toBeNull();
-  const text = await paragraph.textContent();
-  expect(text).toBe('This is my shopping list');
-});
-

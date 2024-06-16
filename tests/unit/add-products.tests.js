@@ -1,17 +1,17 @@
 const assert = require('assert');
 const fetch = require('node-fetch');
 
-suite('Add Products page', function() {
-  test('Page title', async function() {
-    let res = await fetch("http://localhost:8888/add-product");
+describe('Add Products page', function() {
+  it('Page title', async function() {
+    let res = await fetch("http://localhost:8080/add-product");
     let body = await res.text();
     assert.ok(body.includes("<h1>Add New Product</h1>"));
   });
 
-  test('Product HTML form', async function() {
-    let res = await fetch("http://localhost:8888/Add-Product");
+  it('Product HTML form', async function() {
+    let res = await fetch("http://localhost:8080/Add-Product");
     let body = await res.text();
-    
+
     let nameFieldFound = body.includes('<input id="name" type="text" name="name"/>');
     assert.ok(nameFieldFound, "Field 'name' is missing");
 
@@ -22,9 +22,9 @@ suite('Add Products page', function() {
     assert.ok(buttonAddFound, "Button [Add] is missing");
   });
 
-  test('Add valid product', async function() {
+  it('Add valid product', async function() {
     let res = await fetch(
-      "http://localhost:8888/Add-Product",
+      "http://localhost:8080/Add-Product",
       {
         method: 'POST',
         headers: {
@@ -39,9 +39,9 @@ suite('Add Products page', function() {
     assert.ok(productsReturned, "Add product failed");
   });
 
-  test('Add invalid product', async function() {
+  it('Add invalid product', async function() {
      let res = await fetch(
-      "http://localhost:8888/Add-Product",
+      "http://localhost:8080/Add-Product",
       {
         method: 'POST',
         headers: {
@@ -54,7 +54,7 @@ suite('Add Products page', function() {
     let errMsg = body.includes("Cannot add product. Name and price fields are required!");
     assert.ok(errMsg, "Add invalid product should display an error message");
 
-    res = await fetch("http://localhost:8888/");
+    res = await fetch("http://localhost:8080/");
     body = await res.text();
 	  assert.ok(body.includes("Shopping List: <b>3</b>"), 
 		"Add invalid product should not change the products count");
